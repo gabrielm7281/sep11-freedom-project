@@ -24,6 +24,9 @@ var config = {
 ```
 The config enables everything to work and I think the type tag tells the system that it is a basic Phaser website. The width and height are self explanatory and I think the physics part sets it to an automatic arcade setting. Everything else was fairly straightforward and I was able to understand what the tutorial was saying. 
 
+### Engineering Design Process
+The engineering design process is a structure to follow that could help guide me through the year. It has 8 stages, from just thinking about a topic, to building it out, and finally sharing it to the world. I think I am just at stage 2 right now, which is Reasearching the topic. Since I am still just playing around with Phaser and trying to figure it out, I think that counts as reasearching.
+
 ### Skills I Learned
 Since there wasnt really much happening in the early stages, I didnt learn too much. I think I understand the importance of practicing code so that I understand what I am writing. This is especially important since I will be using this tool all year and I need to make a whole game out of it. Doing this well help me out a lot later on since I have to start from scratch. 
 
