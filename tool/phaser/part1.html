@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 1</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
+
+    var game = new Phaser.Game(config);
+
+    function preload ()
+    // this.add.image is creating a new Image Game Object and adding it to the current Scenes display list. This list is where all of your Game Objects live. The 'sky' is the key (which can be named anything), and the following path is the access to actually load in the correct asset.
+    // The order in which game objects are displayed matches the order in which you create them.
+    {
+        this.load.image('name', 'filepath');
+        { frameWidth: 32, frameHeight: 48 }
+    }
+
+    function create ()
+
+    {
+
+    }
+
+    function update ()
+    {
+    }
+
+</script>
+
+</body>
+</html>

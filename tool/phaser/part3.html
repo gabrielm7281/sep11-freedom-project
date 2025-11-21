@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 3</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
+};
+
+
+
+
+
+    var game = new Phaser.Game(config);
+    var platforms;
+
+    function preload ()
+
+    // this.add.image is creating a new Image Game Object and adding it to the current Scenes display list. This list is where all of your Game Objects live. The 'sky' is the key (which can be named anything), and the following path is the access to actually load in the correct asset.
+    // The order in which game objects are displayed matches the order in which you create them.
+    {
+        this.load.image('sky', 'assets/sky.png');
+        this.load.image('ground', 'assets/platform.png');
+        this.load.image('star', 'assets/star.png');
+        this.load.image('bomb', 'assets/bomb.png');
+        this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    }
+
+    function create ()
+
+
+    // static.Group() creates a new Static Physics Group and assigns it to the local variable platforms. Static groups has a position and a size, and isnt affected by gravity or any other actions. Its useful for ground and platforms. Dynamic groups can move around and bounce around and are affected by external forces. (Groups are just items grouped together that can be controlled)
+    {
+
+           this.add.image(400, 300, 'sky');
+
+        platforms = this.physics.add.staticGroup();
+    // Set scale makes the platform twice the size so that it would look like the gorund. refreshBody is requiered because you are increaing the size of said platform, so you need to refresh it so that the system understands
+        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
+        platforms.create(600, 400, 'ground');
+        platforms.create(50, 250, 'ground');
+        platforms.create(750, 220, 'ground');
+
+        // These 3 lines make the actual sprite that you see as the character. The physics.add makes the sprite a dynamic group so that it automatically gets physics. The .setBounce means that it will slightly bounce everytime it hits the floor. The .setCollideWorldBounds prevents the character from running off screen, which is 800 x 600 in this case
+
+        player = this.physics.add.sprite(100, 450, 'dude');
+
+        // The collider tag asks the computer to test the area for collisions between groups in the perenteces
+        this.physics.add.collider(player, platforms)
+
+        player.setBounce(0.2);
+        player.setCollideWorldBounds(true);
+
+        stars = this.physics.add.group({
+        key: 'star',
+        repeat: 11,
+        setXY: { x: 12, y: 0, stepX: 70 }
+
+    });
+
+    stars.children.iterate(function (child) {
+
+        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+});
+this.physics.add.collider(stars, platforms);
+
+
+        // The other code below allows the sprite sheet that was loaded earlier to function. The animation for going left for example starts at 0 (The first picture in the sheet), and ends at 3, giving it a simple running animation. The repeat: -1 feature makes the animation loop infinitley while holding down the key. Its the same for all of the others
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'dude', frame: 4 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+    }
+
+    function update ()
+    {
+        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+//
+    cursors = this.input.keyboard.createCursorKeys();
+        if (cursors.left.isDown)
+{
+    player.setVelocityX(-160);
+
+    player.anims.play('left', true);
+}
+else if (cursors.right.isDown)
+{
+    player.setVelocityX(160)
+
+    player.anims.play('right', true);
+}
+else
+{
+    player.setVelocityX(0);
+
+    player.anims.play('turn');
+}
+
+if (cursors.up.isDown && player.body.touching.down)
+{
+    player.setVelocityY(-330);
+}
+    }
+
+</script>
+
+</body>
+</html>
