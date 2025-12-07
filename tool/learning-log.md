@@ -34,6 +34,22 @@
     * Figuring this out was a bit tricky because the tutorial wasnt very clear about it, and I think it isnt really meant to be run, so there would be important stuff missing. If I just copied and pasted the code, it wouldnt work without a little bit of tweaking. For example, the key in `platform.create` was ground, but it needed to be `platforms`, at least for me. There were a bunch more small things like this where I got stuck
     * Next I want to try and get the spritesheet in so that there I can start jumping around. I dont think it should be too hard, but I think I would need to restructure a lot of stuff because the ZIP file is quite large.
 * Friday: I tried to figure out the spritesheet, but for some reason I was getting even more errors using `{ frameWidth: 32, frameHeight: 48 }`. I think it might just be in the wrong place, and it is kinda hard to find things in the documentation
+
+### 12/1
+* Monday:
+    * Monday was mainly trying to figure out what I should use in the documentation to make my spritesheet appear. I went back and forth between the setup tutorial and the documentation to try and see what I was doing wrong.
+    * I think part of it was the `{ frameWidth: 32, frameHeight: 48 }`. I think this is for resizing the indivudal frames in the spritesheet, not telling the system what frames to use like I originally thought.
+    * I think another issue that I had was this:
+        ``` js
+        this.anims.create({
+        key: 'walk',
+        frames: this.anims.generateFrameNumbers('spritesheet-test', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+        ```
+        This is where the system gets the frames from. Im not entirely sure how the key stuff works, and it was a bit difficult to find in documentation. However the other stuff was explained very well. The `frames` takes the spritesheet and you are able to tell it what frames you want to assign to it. The `frameRate` tells the system how many frames to run it at, and the `repeat: -1` basically says to keep going as long as it needs to instead of running a set number of times.
+* Friday:
+    * I didnt get too much time to work on the FP today, so I just spent some more time looking through their tutorials and documentation. I think the regular spritesheet loading is correct, but I think it is the above snippet that is causing problems. Since I was a little more focused on the asset loading itself, I didnt realize this until a little later but I couldnt really work on it at the time. 
 <!--
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
