@@ -21,6 +21,8 @@ Here, the preload function loads everything in. The `this.load.image()` makes an
 ```
 I actually used this to explain my issue earlier and once I restart, I know I will forget how to use it so comments like these will be very useful to me.
 
+Over the break, I would like to figure out how to actually control the character. So far there is just a bunch of errors when I copy in the code from the [tutorial](https://phaser.io/tutorials/making-your-first-phaser-3-game/part7). I am going to try and find a video that goes over it, and it is important for me to know anyway since it is the core part of any game. Hopefully I will have everything important figured out by the time we actually have to start working on the real project.
+
 ### Engineering Design Process
 
 For my EDP stage, I think I am at a stage 2 right now. Since there arent really any problems I am solving (except bordeom maybe), I can just replace it with the development process. I am still only practicing and learning Phaser, and I havent really started to plan anything major except the basic concept since I am so focused on figuring out how I can use the framework. I think this will be the longest part of the early stages but I am trying to do it as quickly as I can without properly rushing so I have time to build something good.
