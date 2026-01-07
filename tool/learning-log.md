@@ -49,7 +49,12 @@
         ```
         This is where the system gets the frames from. Im not entirely sure how the key stuff works, and it was a bit difficult to find in documentation. However the other stuff was explained very well. The `frames` takes the spritesheet and you are able to tell it what frames you want to assign to it. The `frameRate` tells the system how many frames to run it at, and the `repeat: -1` basically says to keep going as long as it needs to instead of running a set number of times.
 * Friday:
-    * I didnt get too much time to work on the FP today, so I just spent some more time looking through their tutorials and documentation. I think the regular spritesheet loading is correct, but I think it is the above snippet that is causing problems. Since I was a little more focused on the asset loading itself, I didnt realize this until a little later but I couldnt really work on it at the time. 
+    * I didnt get too much time to work on the FP today, so I just spent some more time looking through their tutorials and documentation. I think the regular spritesheet loading is correct, but I think it is the above snippet that is causing problems. Since I was a little more focused on the asset loading itself, I didnt realize this until a little later but I couldnt really work on it at the time.
+
+### 12/15:
+* Monday:
+    * It turns out that my spritesheet issues were just becaus of filepath issues. I thought I had it correct so I didnt look at it. The original one was going a couple of "levels" up. It was already in a folder I was directing it to so thats what caused the issue. I changed it to `phaser-test/assets/guy.png` and it worked. Afterwards I adjusted the framewidth (Which I understand now) to make sure it wasnt cut off. I am now having issues with making the animation move. I am going to use [this tutorial](https://www.youtube.com/watch?v=ovMYA2_W6QE) again.
+
 <!--
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
