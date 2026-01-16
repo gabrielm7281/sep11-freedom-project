@@ -55,6 +55,16 @@
 * Monday:
     * It turns out that my spritesheet issues were just becaus of filepath issues. I thought I had it correct so I didnt look at it. The original one was going a couple of "levels" up. It was already in a folder I was directing it to so thats what caused the issue. I changed it to `phaser-test/assets/guy.png` and it worked. Afterwards I adjusted the framewidth (Which I understand now) to make sure it wasnt cut off. I am now having issues with making the animation move. I am going to use [this tutorial](https://www.youtube.com/watch?v=ovMYA2_W6QE) again.
 
+
+### 1/9:
+* Friday:
+    * I started watching this [tutorial](https://www.youtube.com/watch?v=rUuO1TojQl8) to try and figure out how to move the character without error. Its a little bit hard to follow so I am also going to check the Phaser docs even though they are probably worse.
+* Wensday:
+    * I feel like the issue with the movement is from the fact that I need to create the key inputs myself. I have `cursors = this.input.keyboard.createCursorKeys();` but I dont think this is what I need. I noticed the tutorial from above has a template file with some code I might be able to use, but I need to figure it out first.
+    * I found this image from [here](https://medium.com/@yuchchen1314/learn-to-build-a-game-with-phaser-in-five-minutes-282395892d51), and I think its more helpful
+    ![alt text](image.png)
+* Thursday:
+    * I still feel pretty stuck, I keep switching around and adding code but nothing works. I think it would probably be better to ask someone who knows Phaser well in class
 <!--
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
