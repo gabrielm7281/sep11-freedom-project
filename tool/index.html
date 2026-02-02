@@ -32,6 +32,9 @@
     }
 };
 
+    var cursors;
+    var player;
+
     var game = new Phaser.Game(config);
 
     function preload ()
@@ -39,42 +42,73 @@
     // The order in which game objects are displayed matches the order in which you create them.
     {
         // this.load.image('name/key', 'filepath');
+         this.load.spritesheet("guy", "phaser-test/assets/guy.png", { frameWidth: 150, frameHeight: 120 } );
+
          this.load.image('sky', 'phaser-test/assets/sky.png' );
          this.load.image('platform', 'phaser/assets/platform.png');
-         this.load.spritesheet('spritesheet-test', 'phaser-test/assets/spritesheet-test.png') { frameWidth: 32, frameHeight: 48 }
 
     }
 
     function create ()
 
     {
+        this.cursorKeys = this.input.keyboard.createCursorKeys();
+
         this.add.image(400, 300, 'sky');
         this.add.image(200, 400, 'platform')
+
 
         var platforms = this.physics.add.staticGroup();
             platforms.create(400, 568, 'platform').setScale(2).refreshBody()
             platforms.create(300, 200, 'platform')
             platforms.create(250, 300, 'platform')
 
-        var player = this.physics.add.sprite(100, 450, 'spritesheet-test')
+         player = this.physics.add.sprite(300, 100, "guy")
             player.setCollideWorldBounds(true);
             this.physics.add.collider(player, platforms);
+            player.body.setGravityY(300)
 
-            this.anims.create(
-                {
-                    key: 'run'
-                    frames: this.anims.generateFrameNumbers('spritesheet-test', {start: 0, end: 3})
-                    framerate: 10
-                    repeat: -1
-                }
-            )
+
+
+        // this.person = this.add.sprite(300, 300, "spritesheet-test")
+
+        this.anims.create({
+        key: 'move',
+        frames: this.anims.generateFrameNumbers("guy", { start: 0, end: 7 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+
+
 
 
     }
 
     function update ()
     {
+    if (this.cursorKeys.left.isDown)
+        {
+             player.setVelocityX(-160);
+
+             player.anims.play('left', true);
+
+        }
+
     }
+
+        // else if (cursors.right.isDown)
+        // {
+        //     player.setVelocityX(160);
+
+        //     player.anims.play('walk', true);
+        // }
+        // if (cursors.up.isDown)
+        // {
+        //     player.setVelocityY(-330);
+        // }
+        // if(leftKey.isDown){player.body.setVelocity.x = -160}
+
 
 </script>
 
