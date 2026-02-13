@@ -32,7 +32,7 @@ April: Add any extra stuff I want to add such as an extra level or a more detail
 
 - [ ] Second level with a different level design from the first one
   - [ ] More advanced enemies
-- Add multiple different kinds of attacks
+- [ ] Add multiple different kinds of attacks
 - [ ] Control menu
 
 
