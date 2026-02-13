@@ -1,21 +1,37 @@
 # Plan
 
-## Tool: 
-## Product: 
+## Tool: Phaser
+## Product: Game
 
 ---
 
 ## Timeline
-
+Goal: Make a functional and intresting Hollow Knight style game, with working enemies and an attack system using Phaser.
+Febuary/March: Work on all of the basic skills I need to make a game like this, as well as incorporate the below ideas and plans into the game.
+April: Add any extra stuff I want to add such as an extra level or a more detailed fighting/health system
 #### MVP
 
-- [ ] Task (deadline: X)
-  - [ ] Subtask (deadline: X)
+- Have the tutorial/first level background setup ready. (deadline: End of Feb. break)
+  - Have the behind the scenes code setup and refined so that I can understand it while I continue coding
+  -  Have spritesheets chosen and implemented, as well as animations
+
+---
+
+-  Put in the character with movement, full week for this since I struggled with it before (deadline: Feb 28)
+    - Add full controls for the character
+    - Assign animations
+
+---
+- Figure out how to have randomly moving characters (deadline: March 7)
+  - Have a health and damage model (March 14)
+  - Have enemies attack and reduce health (March 18)
+---
+- Include any background stuff or overlays with text I want to include (Flexible deadline: March 20)
 
 #### Beyond MVP
 
-- [ ] Task
-  - [ ] Subtask
+- [ ] Second level with a different level design as the first one
+  - [ ] More advanced enemies
 
 
 <!-- EXAMPLE
@@ -49,7 +65,7 @@
 
 <!-- DO NOT USE THIS YET
 
-#### Peer Feedback 
+#### Peer Feedback
 
 | Name | Glows | Grows |
 | -------- | ------- | ------- |
