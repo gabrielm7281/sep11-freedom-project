@@ -11,18 +11,18 @@ Febuary/March: Work on all of the basic skills I need to make a game like this, 
 April: Add any extra stuff I want to add such as an extra level or a more detailed fighting/health system
 #### MVP
 
-- Have the tutorial/first level background setup ready. (deadline: End of Feb. break)
+- [ ] Have the tutorial/first level background setup ready. (deadline: End of Feb. break)
   - Have the behind the scenes code setup and refined so that I can understand it while I continue coding
   -  Have spritesheets chosen and implemented, as well as animations
 
 ---
 
--  Put in the character with movement, full week for this since I struggled with it before (deadline: Feb 28)
+-  [ ] Put in the character with movement, full week for this since I struggled with it before (deadline: Feb 28)
     - Add full controls for the character
     - Assign animations
 
 ---
-- Figure out how to have randomly moving characters (deadline: March 7)
+- [ ] Figure out how to have randomly moving characters (deadline: March 7)
   - Have a health and damage model (March 14)
   - Have enemies attack and reduce health (March 18)
 ---
@@ -30,8 +30,10 @@ April: Add any extra stuff I want to add such as an extra level or a more detail
 
 #### Beyond MVP
 
-- [ ] Second level with a different level design as the first one
+- [ ] Second level with a different level design from the first one
   - [ ] More advanced enemies
+- Add multiple different kinds of attacks
+- [ ] Control menu
 
 
 <!-- EXAMPLE
