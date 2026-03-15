@@ -4,8 +4,7 @@
 ### What Have I Done So Far?
 
 The month in between this blog and the last blog has seen a lot of improvements the code. I am
-still trying to learn Phaser because of its complexity and lack of explanations I can understand, but I think I have made good progress. My main issue from the last blog was the movement. I have figured this out and I dont think its something I need to worry about anymore. I have also figured out how to stretch the background image to fit the full screen. I used [this]
-(https://phaser.discourse.group/t/how-to-stretch-background-image-on-full-screen/1839) thread to change my code from what I previously had. Ryan showed me his code and explained it to me, this was just the last piece I needed to make it work. Heres what I have written for this:
+still trying to learn Phaser because of its complexity and lack of explanations I can understand, but I think I have made good progress. My main issue from the last blog was the movement. I have figured this out and I dont think its something I need to worry about anymore. I have also figured out how to stretch the background image to fit the full screen. I used [this](https://phaser.discourse.group/t/how-to-stretch-background-image-on-full-screen/1839) thread to change my code from what I previously had. Ryan showed me his code and explained it to me, this was just the last piece I needed to make it work. Heres what I have written for this:
 ``` js
 background.setPosition(this.sys.game.canvas.width/2 - 400,this.sys.game.canvas.height/ 2)
      const scaleX = 4 * this.sys.game.canvas.width/background.width
