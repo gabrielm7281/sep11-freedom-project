@@ -1,29 +1,146 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 1</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="style.css" rel="stylesheet" type="text/css" />
-        <style>
-            /* CSS */
-            
-        </style>
+<script type="text/javascript">
+
+     var config = {
+    type: Phaser.AUTO,
+    width: 2000,
+    height: 1000,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: true
+        }
+    },
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
+};
+    
+    var player
+    var enemy
+    var game = new Phaser.Game(config);
+
+    function preload ()
+    // this.add.image is creating a new Image Game Object and adding it to the current Scenes display list. This list is where all of your Game Objects live. The 'sky' is the key (which can be named anything), and the following path is the access to actually load in the correct asset.
+    // The order in which game objects are displayed matches the order in which you create them.
+    {
+        // this.load.image('name/key', 'filepath' { frameWidth: 32, frameHeight: 48 };
+        this.load.image('spooky', 'tool/phaser/assets/main-assets/background.png')
+        this.load.image('platform-flat', 'tool/phaser/assets/main-assets/tile18.png')
+        this.load.image('platform-left', 'tool/phaser/assets/main-assets/tile79.png')
+        this.load.image('platform-right', 'tool/phaser/assets/main-assets/tile80.png')
+        this.player = this.load.spritesheet('guy', 'tool/phaser-test/assets/guy.png', {frameWidth: 120, frameHeight: 150})
+        this.enemy = this.load.spritesheet('dude', 'tool/phaser/assets/dude.png', {frameWidth: 36, frameHeight: 48})
+    }
+
+    function create ()
+
+    {
+       var background = this.add.image(0, 0, "spooky") 
+       background.setPosition(this.sys.game.canvas.width/2 - 400,this.sys.game.canvas.height/2)
+     const scaleX = 4 * this.sys.game.canvas.width/background.width
+     const scaleY = this.sys.game.canvas.height/background.height
+     const scale = (scaleX,scaleY)
+    background.setScale(scale)
+
+    
+    
+
+        var platforms = this.physics.add.staticGroup();
+
+            platforms.create(200, 200, 'platform-flat').setScale(2).refreshBody()
+            platforms.create(270, 230, 'platform-left')
+            platforms.create(130, 230, 'platform-right')
+
+            platforms.create(400, 568, 'platform-flat').setScale(2).refreshBody() 
+            platforms.create(470, 600, 'platform-left')
+            platforms.create(330, 600, 'platform-right')
+
+            platforms.create(900, 568, 'platform-flat').setScale(2).refreshBody()
+            platforms.create(970, 600, 'platform-left')
+            platforms.create(830, 600, 'platform-right')
+
+            platforms.create(900, 300, 'platform-flat').setScale(2).refreshBody()
+            platforms.create(970, 340, 'platform-left')
+            platforms.create(830, 340, 'platform-right')
+   
+   
+   
+            player = this.physics.add.sprite(400, 100, 'guy')
+            player.setCollideWorldBounds(true);
+            this.physics.add.collider(player, platforms);
+            player.body.setGravityY(1000)
+
+            enemy = this.physics.add.sprite(1000, 500, 'dude')
+            enemy.setCollideWorldBounds(true);
+            this.physics.add.collider(enemy, platforms);
+            // this.physics.add.collider(enemy, player);
         
-        <title>Title</title>
-    </head>
-    <body>
-        <!-- HTML -->
-        
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- <script src="script.js"></script> -->
-        <script>
-            // JS
-            
-            
-        </script>
-    </body>
+        this.physics.add.overlap(this.player, this.enemy)
+       this.physics.add.overlap(player, enemy, function() {
+        enemy.destroy()
+        console.log('hit!')}, null, this);
+
+
+        this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('guy', { start: 0, end: 7 }),
+        frameRate: 14,
+        repeat: 0
+    });
+
+        this.anims.create({
+            key: 'attack',
+            frames: this.anims.generateFrameNumbers('guy', {start: 1, end: 4}),
+            frameRate: 14,
+            repeat: 0
+        })
+
+    this.cursorKeys = this.input.keyboard.createCursorKeys();
+    this.attackKey = this.input.keyboard.addKey("Z")
+    }
+
+    function update ()
+    {
+        // player.body.debugBodyColor = player.body.touching.none ? 0x0099ff : 0xff9900;
+        if (this.cursorKeys.left.isDown)
+        {
+             player.setVelocityX(-160);
+
+             player.anims.play('right', true);
+
+        } else if (this.cursorKeys.right.isDown)
+        {
+            player.setVelocityX(160);
+
+            player.anims.play('right', true);
+        } else if ((this.cursorKeys.up.isDown && player.body.touching.down) || (this.cursorKeys.up.isDown && this.cursorKeys.right.isDown && player.body.touching.down)){
+            player.setVelocityY(-330)
+            player.body.setGravityY(10)
+        } else player.setVelocityX(0)
+
+        // if(this.attackKey.isDown && this.together == true){
+        //     player.anims.play('attack', true);
+        // }
+    }
+
+</script>
+
+</body>
 </html>
