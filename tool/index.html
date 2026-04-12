@@ -16,13 +16,13 @@
 
     var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 2000,
+    height: 1000,
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: false
+            debug: true
         }
     },
     scene: {
@@ -41,43 +41,79 @@
     // this.add.image is creating a new Image Game Object and adding it to the current Scenes display list. This list is where all of your Game Objects live. The 'sky' is the key (which can be named anything), and the following path is the access to actually load in the correct asset.
     // The order in which game objects are displayed matches the order in which you create them.
     {
+        this.canvas = this.sys.game.canvas;
+
         // this.load.image('name/key', 'filepath');
          this.load.spritesheet("guy", "phaser-test/assets/guy.png", { frameWidth: 150, frameHeight: 120 } );
 
-         this.load.image('sky', 'phaser-test/assets/sky.png' );
          this.load.image('platform', 'phaser/assets/platform.png');
+         this.load.image('sky', 'phaser-test/assets/sky.png' );
 
     }
 
     function create ()
-
     {
-        this.cursorKeys = this.input.keyboard.createCursorKeys();
+        
+// This snippet of code stretches the background picture to match the full screen size instead of it being in the corner. This only works with a large canvas size (Which should always be a thing).
+     const background = this.add.image(0 , 0, 'sky')
+    //  background.setOrigin(.5, .5)
+     background.setPosition(this.sys.game.canvas.width/2 - 400,this.sys.game.canvas.height/2)
+     const scaleX = 4 * this.sys.game.canvas.width/background.width
+     const scaleY = this.sys.game.canvas.height/background.height
+     const scale = (scaleX,scaleY)
+    background.setScale(scale)
+    console.log(this.sys.game.canvas.width)
 
-        this.add.image(400, 300, 'sky');
+        this.cursorKeys = this.input.keyboard.createCursorKeys();
+        this.attackKey = this.input.keyboard.addKey("D");
+
+        // this.add.image(300, 100, 'sky').setOrigin(0, 0);
         this.add.image(200, 400, 'platform')
 
 
         var platforms = this.physics.add.staticGroup();
             platforms.create(400, 568, 'platform').setScale(2).refreshBody()
+            platforms.create(1000, 568, 'platform').setScale(2).refreshBody()
             platforms.create(300, 200, 'platform')
             platforms.create(250, 300, 'platform')
 
          player = this.physics.add.sprite(300, 100, "guy")
             player.setCollideWorldBounds(true);
             this.physics.add.collider(player, platforms);
-            player.body.setGravityY(300)
+            player.body.setGravityY(1000)
 
+        this.cameras.main.setSize(innerWidth, innerHeight);
+        this.cameras.main.startFollow(player);
+        this.cameras.main.setZoom(.8)
+        
+        this.attackBox = this.add.rectangle(0, 0, 80, 60, 0xff0000);
+this.physics.add.existing(this.attackBox);
+this.attackBox.setVisible(false);
+this.attackBox.body.allowGravity = false;
+
+        // this.player.setCollideWorldBounds(true);
+
+        // this.cameras.main.setRoundPixels(true);
+
+        // this.cameras.main.startFollow(this.player, true);
 
 
         // this.person = this.add.sprite(300, 300, "spritesheet-test")
 
         this.anims.create({
-        key: 'move',
+        key: 'left',
         frames: this.anims.generateFrameNumbers("guy", { start: 0, end: 7 }),
         frameRate: 10,
-        repeat: -1
+        repeat: 0
     });
+
+        this.anims.create({
+            key: 'attack',
+            frames: this.anims.generateFrameNumbers("guy", {start: 0, end: 7}),        
+            frameRate: 10, 
+            repeat: 4
+        })
+        
 
 
 
@@ -93,16 +129,24 @@
 
              player.anims.play('left', true);
 
-        }
+        } else if (this.cursorKeys.right.isDown)
+        {
+            player.setVelocityX(160);
+
+            player.anims.play('left', true);
+        } else if ((this.cursorKeys.up.isDown && player.body.touching.down) || (this.cursorKeys.up.isDown && this.cursorKeys.right.isDown && player.body.touching.down)){
+            player.setVelocityY(-330)
+            player.body.setGravityY(10)
+        } else player.setVelocityX(0)
+
+        if (Phaser.Input.Keyboard.JustDown(this.attackKey)) {
+    player.anims.play('attack', true);
+}
+        
 
     }
 
-        // else if (cursors.right.isDown)
-        // {
-        //     player.setVelocityX(160);
-
-        //     player.anims.play('walk', true);
-        // }
+        
         // if (cursors.up.isDown)
         // {
         //     player.setVelocityY(-330);

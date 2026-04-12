@@ -72,13 +72,18 @@
 
     * I also looked at how to make a health bar. It seems kinda complex and I dont fully trust Phaser code examples, so I may need to interpret their code by myself. [This is their example](https://phaser.io/examples/v3.85.0/game-objects/graphics/view/health-bars-demo), [and damaging system] (https://phaser.io/examples/v3.85.0/physics/arcade/view/space-battle)
 
+
 * Tuesday: 
     * Looked for background for the first scene
     * Ryan tried helping me have the background fit the page
 
 * Friday: 
-    * I tried to follow along with another LowPolyPrincess platformer tutorial video but I didnt get very far before encountering issues
+    * I tried to follow along with another [LowPolyPrincess](https://www.youtube.com/watch?v=0qtg-9M3peI) platformer tutorial video but I didnt get very far before encountering issues
     * Their code was using things I hadnt figured out yet, and I wasnt able to reverse engineer the code to fit my own current game. 
+
+### 3/23:
+* Monday:
+    * Started getting assets for the MVP. I think most of my basic needs are met so I think I can start coding the actual project
 <!--
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
