@@ -22,14 +22,14 @@ April: Add any extra stuff I want to add such as an extra level or a more detail
     - Assign animations
 
 ---
-- [ ] Figure out how to have randomly moving characters (deadline: March 7)
+
 - [ ] Add in attacks for player
   
 ---
 - Include any background stuff or overlays with text I want to include (Flexible deadline: March 20)
 
 #### Beyond MVP
-
+- [ ] Figure out how to have randomly moving characters (Main Beyond MVP goal)
 - [ ] Second level with a different level design from the first one
   - [ ] More advanced enemies
 - [ ] Add multiple different kinds of attacks
