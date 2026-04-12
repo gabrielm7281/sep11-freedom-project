@@ -23,8 +23,8 @@ April: Add any extra stuff I want to add such as an extra level or a more detail
 
 ---
 - [ ] Figure out how to have randomly moving characters (deadline: March 7)
-  - Have a health and damage model (March 14)
-  - Have enemies attack and reduce health (March 18)
+- [ ] Add in attacks for player
+  
 ---
 - Include any background stuff or overlays with text I want to include (Flexible deadline: March 20)
 
@@ -34,6 +34,8 @@ April: Add any extra stuff I want to add such as an extra level or a more detail
   - [ ] More advanced enemies
 - [ ] Add multiple different kinds of attacks
 - [ ] Control menu
+- Have a health and damage model (March 14)
+  - Have enemies attack and reduce health (March 18)
 
 
 <!-- EXAMPLE
