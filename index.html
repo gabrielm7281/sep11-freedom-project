@@ -31,7 +31,7 @@
         update: update
     }
 };
-    
+    var attackKey
     var player
     var enemy
     var game = new Phaser.Game(config);
@@ -45,8 +45,10 @@
         this.load.image('platform-flat', 'tool/phaser/assets/main-assets/tile18.png')
         this.load.image('platform-left', 'tool/phaser/assets/main-assets/tile79.png')
         this.load.image('platform-right', 'tool/phaser/assets/main-assets/tile80.png')
-        this.player = this.load.spritesheet('guy', 'tool/phaser-test/assets/guy.png', {frameWidth: 120, frameHeight: 150})
-        this.enemy = this.load.spritesheet('dude', 'tool/phaser/assets/dude.png', {frameWidth: 36, frameHeight: 48})
+        this.load.spritesheet('guy', 'tool/phaser/assets/main-assets/knight.png', {frameWidth: 1800, frameHeight: 1000})
+        this.load.spritesheet('run', 'tool/phaser/assets/main-assets/knight-run.png', {frameWidth: 1800, frameHeight: 1000})
+        this.load.spritesheet('attack', 'tool/phaser/assets/main-assets/knight-attack.png', {frameWidth: 1800, frameHeight: 1000})
+        this.load.spritesheet('slime', 'tool/phaser/assets/main-assets/slime.png', {frameWidth: 128, frameHeight: 128})
     }
 
     function create ()
@@ -83,33 +85,50 @@
    
    
             player = this.physics.add.sprite(400, 100, 'guy')
+            player.setScale(.12)
+            player.body.setSize(400, 400)
+            player.body.setOffset(792, 300)
             player.setCollideWorldBounds(true);
             this.physics.add.collider(player, platforms);
             player.body.setGravityY(1000)
 
-            enemy = this.physics.add.sprite(1000, 500, 'dude')
+            enemy = this.physics.add.sprite(1000, 500, 'slime')
             enemy.setCollideWorldBounds(true);
             this.physics.add.collider(enemy, platforms);
+            enemy.body.setSize(50, 50)
+            enemy.body.setOffset(38, 80)
             // this.physics.add.collider(enemy, player);
-        
-        this.physics.add.overlap(this.player, this.enemy)
-       this.physics.add.overlap(player, enemy, function() {
-        enemy.destroy()
-        console.log('hit!')}, null, this);
 
+        //  this.physics.add.overlap(this.player, this.enemy)
+       
+       
 
         this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('guy', { start: 0, end: 7 }),
+            key: 'blob',
+            frames: this.anims.generateFrameNumbers('slime', {start: 0, end: 7}),
+            frameRate: 14,
+            repeat: 0,
+        });
+
+        this.anims.create({
+        key: 'still',
+        frames: this.anims.generateFrameNumbers('guy', { start: 0, end: 9 }),
+        frameRate: 14,
+        repeat: 0
+    });
+
+    this.anims.create({
+        key: 'move',
+        frames: this.anims.generateFrameNumbers('run', { start: 0, end: 7 }),
         frameRate: 14,
         repeat: 0
     });
 
         this.anims.create({
-            key: 'attack',
-            frames: this.anims.generateFrameNumbers('guy', {start: 1, end: 4}),
+            key: 'sword',
+            frames: this.anims.generateFrameNumbers('attack', {start: 0, end: 9}),
             frameRate: 14,
-            repeat: 0
+            repeat: 2
         })
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
@@ -122,22 +141,28 @@
         if (this.cursorKeys.left.isDown)
         {
              player.setVelocityX(-160);
-
-             player.anims.play('right', true);
+             player.flipX = true;
+             player.anims.play('move', true);
+             
 
         } else if (this.cursorKeys.right.isDown)
         {
             player.setVelocityX(160);
-
-            player.anims.play('right', true);
-        } else if ((this.cursorKeys.up.isDown && player.body.touching.down) || (this.cursorKeys.up.isDown && this.cursorKeys.right.isDown && player.body.touching.down)){
+            player.flipX = false;
+            player.anims.play('move', true);
+        } else {player.setVelocityX(0); player.anims.play('still', true); enemy.anims.play('blob', true)}
+        
+        if ((this.cursorKeys.up.isDown && player.body.touching.down) || (this.cursorKeys.up.isDown && this.cursorKeys.right.isDown && player.body.touching.down)){
             player.setVelocityY(-330)
             player.body.setGravityY(10)
-        } else player.setVelocityX(0)
+        } 
 
-        // if(this.attackKey.isDown && this.together == true){
-        //     player.anims.play('attack', true);
-        // }
+        if(this.attackKey.isDown){
+            console.log("it works")
+            player.anims.play('sword', true);
+            this.physics.add.overlap(player, enemy, function() {enemy.destroy()}, null, this);
+        }
+        
     }
 
 </script>
