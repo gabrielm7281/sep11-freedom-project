@@ -44,6 +44,8 @@ I didnt understand it and it didnt make any sense, and definitley wouldnt of wor
 
 I think it is also good to help out with repetitive tasks that you dont fully understand. For example, when I was doing the frame widths for the spritesheets, I had no idea what to do with it. I had only done it a few times before since I took it from the tutorial, and it didnt look very good. When I first wrote the new spritesheet in, it wouldnt show at all so I asked Claude why it happened. It said the frameWidth/Height needed to be a specific number, and it did the math (Takes columns/width = frameWidth and rows/height = frameHeight). I took the math and kept redoing it until I had all of my spritesheets in. This wouldve taken hours on my own but it took a few minutes here. I dont think this is unethical AI usage and these two examples were one of the very few times I actually used and implemented what the AI said. 
 
+[Project Preview](https://gabrielm7281.github.io/sep11-freedom-project/)
+
 [Previous](entry04.md) | [Next](entry06.md)
 
 [Home](../README.md)
