@@ -32,6 +32,7 @@
     }
 };
     var attackKey
+    var overlapCollider
     var player
     var enemy
     var game = new Phaser.Game(config);
@@ -66,33 +67,39 @@
 
         var platforms = this.physics.add.staticGroup();
 
-            platforms.create(200, 200, 'platform-flat').setScale(2).refreshBody()
-            platforms.create(270, 230, 'platform-left')
-            platforms.create(130, 230, 'platform-right')
+            platforms.create(250, 200, 'platform-flat').setScale(2).refreshBody()
+            platforms.create(320, 230, 'platform-left')
+            platforms.create(180, 230, 'platform-right')
 
-            platforms.create(400, 568, 'platform-flat').setScale(2).refreshBody() 
-            platforms.create(470, 600, 'platform-left')
-            platforms.create(330, 600, 'platform-right')
+            platforms.create(660, 450, 'platform-flat').setScale(2).refreshBody()
+            platforms.create(730, 490, 'platform-left')
+            platforms.create(590, 490, 'platform-right')
 
-            platforms.create(900, 568, 'platform-flat').setScale(2).refreshBody()
-            platforms.create(970, 600, 'platform-left')
-            platforms.create(830, 600, 'platform-right')
+            platforms.create(300, 600, 'platform-flat').setScale(2).refreshBody() 
+            platforms.create(370, 650, 'platform-left')
+            platforms.create(230, 650, 'platform-right')
 
-            platforms.create(900, 300, 'platform-flat').setScale(2).refreshBody()
-            platforms.create(970, 340, 'platform-left')
-            platforms.create(830, 340, 'platform-right')
+            platforms.create(900, 650, 'platform-flat').setScale(2).refreshBody()
+            platforms.create(970, 680, 'platform-left')
+            platforms.create(830, 680, 'platform-right')
+
+            platforms.create(1100, 400, 'platform-flat').setScale(2).refreshBody()
+            platforms.create(1170, 440, 'platform-left')
+            platforms.create(1030, 440, 'platform-right')
    
    
    
-            player = this.physics.add.sprite(400, 100, 'guy')
+            player = this.physics.add.sprite(200, 100, 'guy')
             player.setScale(.12)
             player.body.setSize(400, 400)
             player.body.setOffset(792, 300)
-            player.setCollideWorldBounds(true);
+            // player.setCollideWorldBounds(true);
             this.physics.add.collider(player, platforms);
             player.body.setGravityY(1000)
 
-            enemy = this.physics.add.sprite(1000, 500, 'slime')
+            enemy = this.physics.add.sprite(900, 400, 'slime');
+            enemy = this.physics.add.sprite(300, 150, 'slime');
+            // this.enemy.create(800, 500, 'slime')
             enemy.setCollideWorldBounds(true);
             this.physics.add.collider(enemy, platforms);
             enemy.body.setSize(50, 50)
@@ -133,10 +140,18 @@
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.attackKey = this.input.keyboard.addKey("Z")
-    }
+
+    overlapCollider = this.physics.add.overlap(player, enemy, function() {
+        if(this.attackKey.isDown){
+            enemy.destroy(); 
+                console.log("dead")
+        }
+            }, null, this);
+}
 
     function update ()
     {
+     
         // player.body.debugBodyColor = player.body.touching.none ? 0x0099ff : 0xff9900;
         if (this.cursorKeys.left.isDown)
         {
@@ -160,9 +175,11 @@
         if(this.attackKey.isDown){
             console.log("it works")
             player.anims.play('sword', true);
-            this.physics.add.overlap(player, enemy, function() {enemy.destroy()}, null, this);
         }
-        
+
+        if(player.y >= game.canvas.height){
+            player.setPosition(250, 0)
+        }
     }
 
 </script>

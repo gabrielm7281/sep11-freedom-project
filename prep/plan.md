@@ -30,12 +30,11 @@ April: Add any extra stuff I want to add such as an extra level or a more detail
 
 #### Beyond MVP
 - [ ] Figure out how to have randomly moving characters (Main Beyond MVP goal)
-- [ ] Second level with a different level design from the first one
+- [ ] More enemies
   - [ ] More advanced enemies
-- [ ] Add multiple different kinds of attacks
-- [ ] Control menu
-- Have a health and damage model (March 14)
-  - Have enemies attack and reduce health (March 18)
+- [ ] Fix gameplay so that it is more engaging
+- [ ] Control menu or list on the side
+
 
 
 <!-- EXAMPLE
