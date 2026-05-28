@@ -22,7 +22,7 @@
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: true
+            debug: false
         }
     },
     scene: {
@@ -43,9 +43,9 @@
     {
         // this.load.image('name/key', 'filepath' { frameWidth: 32, frameHeight: 48 };
         this.load.image('spooky', 'tool/phaser/assets/main-assets/background.png')
-        this.load.image('platform-flat', 'tool/phaser/assets/main-assets/tile18.png')
-        this.load.image('platform-left', 'tool/phaser/assets/main-assets/tile79.png')
-        this.load.image('platform-right', 'tool/phaser/assets/main-assets/tile80.png')
+        this.load.image('platform-flat', 'tool/phaser/assets/main-assets/tile18(1).png')
+        this.load.image('platform-left', 'tool/phaser/assets/main-assets/tile79(1).png')
+        this.load.image('platform-right', 'tool/phaser/assets/main-assets/tile80(1).png')
         this.load.spritesheet('guy', 'tool/phaser/assets/main-assets/knight.png', {frameWidth: 1800, frameHeight: 1000})
         this.load.spritesheet('run', 'tool/phaser/assets/main-assets/knight-run.png', {frameWidth: 1800, frameHeight: 1000})
         this.load.spritesheet('attack', 'tool/phaser/assets/main-assets/knight-attack.png', {frameWidth: 1800, frameHeight: 1000})
@@ -98,12 +98,13 @@
             player.body.setGravityY(1000)
 
             enemy = this.physics.add.sprite(900, 400, 'slime');
-            enemy = this.physics.add.sprite(300, 150, 'slime');
             // this.enemy.create(800, 500, 'slime')
             enemy.setCollideWorldBounds(true);
             this.physics.add.collider(enemy, platforms);
             enemy.body.setSize(50, 50)
             enemy.body.setOffset(38, 80)
+
+            
             // this.physics.add.collider(enemy, player);
 
         //  this.physics.add.overlap(this.player, this.enemy)
